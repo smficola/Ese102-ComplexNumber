@@ -1,0 +1,104 @@
+package complexnumber;
+
+public class complexnumber {
+
+    private double modulus;
+    private double argument;
+    private double re;
+    private double im;
+		    
+    public complexNumber(double re,double  im)
+    {
+       this.re = re;
+	   this.im = im;
+	   }
+		    
+	public complexNumber()
+        {
+	   this.re = 0;
+       this.im = 0;
+       }
+		    
+    public String formatComplexNumber() 
+    {
+	   String r = this.getRe() + "+(" + this.getIm() + ")i";
+	   return r;
+	}
+
+	public double getRe() {
+       return re;
+	}
+
+	public void setRe(double re) 
+        {
+	   if(re<=modulus){
+	   this.re = re;
+	   }
+	   else{
+		   throw new IllegalArgumentException("The value of a must be different from 0.");
+	   }
+	}
+	public double getIm()
+        {
+	   return im;
+	}
+
+	public void setIm(double im) 
+        {
+	   if(im<=modulus){
+	      this.im = im;
+        }
+	   else{
+		   throw new IllegalArgumentException("The value of a must be different from 0.");
+	   }
+	}
+	public double getModulus()
+        {
+		return modulus;
+	}
+	
+	public void setModulus(double modulus)
+        {
+		if(modulus>=0){
+		   this.modulus=modulus;
+	    }
+		else{
+			throw new IllegalArgumentException("The value of a must be different from 0.");
+		}
+	}
+	public double getArgument()
+        {
+		return argument;
+	}
+	
+	public void setArgument(double argument)
+        {
+		this.argument=argument;
+	}
+	
+	public double calcolaModulus()
+        {
+	   modulus=Math.sqrt((re*re)+(im*im));
+	   return modulus;    	
+    }
+	
+    public double calcolaArgument()
+    {
+	   argument=Math.atan((im/re)+Math.PI);
+	   return argument;
+    }
+    
+    public double caloclaRe() 
+    {
+    	re=Math.sqrt((modulus*modulus)-(im*im));
+		return re;
+	}
+    
+    public double calcolaIm()
+    {
+    	im=Math.sqrt((modulus*modulus)-(re*re));
+    	return im;
+    }
+
+}
+
