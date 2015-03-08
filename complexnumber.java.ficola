@@ -1,0 +1,180 @@
+package complexnumber;
+
+public class complexnumber {
+
+    private double modulus;
+    private double argument;
+    private double re;
+    private double im;
+    public double add;
+    public double sub;
+    public double moltiply;
+    public double divide;
+    public double conjugate;
+    
+    public void setCartesian(double re, double im)
+    {
+        this.re=re;
+        this.im=im;
+    }
+    public void setPolar(double modulus, double argument)
+    {
+        this.modulus=modulus;
+        this.argument=argument;
+    }
+		    
+    public complexnumber(double re,double  im)
+    {
+       this.re = re;
+	   this.im = im;
+	   }
+		    
+	public complexnumber()
+        {
+	   this.re = 0;
+       this.im = 0;
+       }
+		    
+    public String formatComplexNumber() 
+    {
+	   String r = this.getRe() + "+(" + this.getIm() + ")i";
+	   return r;
+	}
+
+	public double getRe() {
+       return re;
+	}
+
+	public void setRe(double re) 
+        {
+	   if(re<=modulus){
+	   this.re = re;
+	   }
+	   else{
+		   throw new IllegalArgumentException("The value of a must be different from 0.");
+	   }
+	}
+	public double getIm()
+        {
+	   return im;
+	}
+
+	public void setIm(double im) 
+        {
+	   if(im<=modulus){
+	      this.im = im;
+        }
+	   else{
+		   throw new IllegalArgumentException("The value of a must be different from 0.");
+	   }
+	}
+	public double getModulus()
+        {
+		return modulus;
+	}
+	
+	public void setModulus(double modulus)
+        {
+		if(modulus>=0){
+		   this.modulus=modulus;
+	    }
+		else{
+			throw new IllegalArgumentException("The value of a must be different from 0.");
+		}
+	}
+	public double getArgument()
+        {
+		return argument;
+	}
+	
+	public void setArgument(double argument)
+        {
+		this.argument=argument;
+	}
+	
+	public double calcolaModulus()
+        {
+	   modulus=Math.sqrt((re*re)+(im*im));
+	   return modulus;    	
+    }
+	
+    public double calcolaArgument()
+    {
+	   argument=Math.atan((im/re)+Math.PI);
+	   return argument;
+    }
+    
+    public double caloclaRe() 
+    {
+    	re=Math.sqrt((modulus*modulus)-(im*im));
+		return re;
+	}
+    
+    public double calcolaIm()
+    {
+    	im=Math.sqrt((modulus*modulus)-(re*re));
+    	return im;
+    }
+     public complexnumber add(complexnumber operand)
+    {
+        complexnumber somma= new complexnumber();
+        double re= this.re+operand.getRe();
+        double im=this.im+operand.getIm();
+        somma.setCartesian(re,im);
+        return somma;
+        
+        
+    }
+    public complexnumber sub(complexnumber operand)
+    {
+        complexnumber sottrazione=new complexnumber();
+        double re=this.re-operand.getRe();
+        double im= this.im-operand.getIm();
+        sottrazione.setCartesian(re,im);
+        return sottrazione;
+        
+        
+    }
+    public complexnumber multiply(complexnumber operand)
+    {
+        complexnumber moltiplicazione= new complexnumber();
+        moltiplicazione.setPolar(this.getArgument()+operand.getArgument(),this.getModulus()*operand.getModulus());
+        return moltiplicazione;
+        
+    }
+    public complexnumber divide(complexnumber operand)
+    {
+        complexnumber divisione = new complexnumber();
+        divisione.setPolar(this.getArgument()-operand.getArgument(),this.getModulus()/operand.getModulus());
+        return divisione;
+        
+        
+    }
+     private double getConjugate()
+    {
+    return conjugate;
+    }
+    private double Conjugate(double re,double im)
+    {
+        this.conjugate=0;
+        return conjugate;
+    }
+     private double setConjugate(double re,double im)
+     {
+         if(this.re<0)
+         {
+             conjugate= - (this.re) + (this.im);
+         }
+         else
+         {
+             conjugate = + (this.re) - (this.im);
+           
+         }
+         return conjugate;
+         
+     }
+    
+            
+    
+}
+
